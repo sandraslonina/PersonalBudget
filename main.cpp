@@ -23,7 +23,7 @@ PersonalBudget personalBudget("Users.xml");
                 personalBudget.userSignIn();
                 break;
 
-            case '9':
+            case '8':
                 exit(0);
                 break;
 
@@ -37,12 +37,32 @@ PersonalBudget personalBudget("Users.xml");
             choice = personalBudget.selectOptionFromUserMenu();
 
             switch (choice) {
-            
-            case '7':
+            	
+			case '1':
+				personalBudget.addIncome();
+				break;
+				
+			case '2':
+			personalBudget.addExpense();
+			break;
+			
+			case '3':
+				personalBudget.balanceForCurrentMonth();
+				break;
+				
+			case 4:
+				personalBudget.balanceForLastMonth();
+				break;
+				
+			case 5:
+				personalBudget.balanceForSelectedPeriod();
+				break;
+				
+            case '6':
                 personalBudget.changePasswordOfLoggedUser();
                 break;
 
-            case '8':
+            case '7':
                 personalBudget.userSignOut();
                 break;
             }

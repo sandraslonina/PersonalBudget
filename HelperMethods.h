@@ -20,6 +20,7 @@ static char getCharacter();
 
 static string putDashesInDate(string dateWithoutDashes);
 static string conversionFloatToString(float number);
+static string checkAmount(string floatNumber);
 
 };
 #endif
