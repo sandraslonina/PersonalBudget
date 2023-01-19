@@ -12,10 +12,14 @@ class HelperMethods
 public:
 	
  static string conversionIntToString(int figure);
+ static int conversionStringToInt(string number);
  static string getTheLine();
  
 static char getCharacter();
 
+
+static string putDashesInDate(string dateWithoutDashes);
+static string conversionFloatToString(float number);
 
 };
 #endif
