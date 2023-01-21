@@ -202,7 +202,7 @@ NAME_FILE_XML : String
       <w>385</w>
       <h>143</h>
     </coordinates>
-    <panel_attributes>FileIncome
+    <panel_attributes>IncomesFileXml
 --
 lastNumberOfRecord : Integer
 --
@@ -222,7 +222,7 @@ loadIncomesLoggedUserFromFile() : vector &lt;Income&gt;
       <w>385</w>
       <h>143</h>
     </coordinates>
-    <panel_attributes>FileExpence
+    <panel_attributes>ExpencesFileXml
 --
 lastNumberOfRecord : Integer
 --
@@ -302,6 +302,17 @@ date : String
 day : String
 month : String
 year : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1056</x>
+      <y>759</y>
+      <w>110</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>Item</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

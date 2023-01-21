@@ -8,6 +8,12 @@ string HelperMethods::conversionIntToString(int figure)
     return str;
 }
 
+int HelperMethods::conversionStringToInt(string number) {
+    int numberInt;
+    istringstream iss(number);
+    iss >> numberInt;
+    return numberInt;
+}
 
 
 string HelperMethods::getTheLine() {
@@ -35,3 +41,33 @@ char HelperMethods::getCharacter() {
 
     return character;
 }
+
+string HelperMethods::putDashesInDate(string dateWithoutDashes)
+{
+    dateWithoutDashes.insert(4,"-");
+    dateWithoutDashes.insert(7,"-");
+
+    return dateWithoutDashes;
+}
+
+string HelperMethods::conversionFloatToString(float number)
+{
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}
+
+
+string HelperMethods::checkAmount(string floatNumber)
+{
+    for (int i = 0; i < floatNumber.length(); i++)
+    {
+        if (floatNumber[i] == 44)
+        {
+            floatNumber[i] = 46;
+        }
+    }
+    return floatNumber;
+}
+
