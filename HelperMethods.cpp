@@ -42,6 +42,15 @@ char HelperMethods::getCharacter() {
     return character;
 }
 
+string HelperMethods::removeDashFromDate(string dateToCheck)
+{
+    string dateWithoutDash;
+    dateWithoutDash = dateToCheck.erase(4,1);
+    dateWithoutDash = dateToCheck.erase(6,1);
+
+    return dateWithoutDash;
+}
+
 string HelperMethods::putDashesInDate(string dateWithoutDashes)
 {
     dateWithoutDashes.insert(4,"-");
@@ -61,7 +70,7 @@ string HelperMethods::conversionFloatToString(float number)
 
 string HelperMethods::checkAmount(string floatNumber)
 {
-    for (int i = 0; i < floatNumber.length(); i++)
+    for (unsigned int i = 0; i < floatNumber.length(); i++)
     {
         if (floatNumber[i] == 44)
         {

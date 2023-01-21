@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-PersonalBudget personalBudget("Users.xml");
+PersonalBudget personalBudget("Users.xml", "Incomes.xml", "Expenses.xml");
 
     char choice;
 
@@ -39,23 +39,23 @@ PersonalBudget personalBudget("Users.xml");
             switch (choice) {
             	
 			case '1':
-				personalBudget.addIncome();
+				personalBudget.addNewIncome();
 				break;
 				
 			case '2':
-			personalBudget.addExpense();
+			personalBudget.addNewExpense();
 			break;
 			
 			case '3':
-				personalBudget.balanceForCurrentMonth();
+				personalBudget.balanceForCurrentMonth(choice);
 				break;
 				
 			case 4:
-				personalBudget.balanceForLastMonth();
+				personalBudget.balanceForLastMonth(choice);
 				break;
 				
 			case 5:
-				personalBudget.balanceForSelectedPeriod();
+				personalBudget.balanceForSelectedPeriod(choice);
 				break;
 				
             case '6':
@@ -64,6 +64,11 @@ PersonalBudget personalBudget("Users.xml");
 
             case '7':
                 personalBudget.userSignOut();
+                break;
+	
+                default:
+                cout << endl << "This option isn`t available in main menu." << endl << endl;
+                system("pause");
                 break;
             }
         }

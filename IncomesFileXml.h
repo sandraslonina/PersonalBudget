@@ -30,16 +30,9 @@ public:
     int getLastItemId();
     void setLastItemId(int newLastItemId);
     
-     vector <Income> loadIncomesLoggedUserFromFileXml();
+     vector <Income> loadIncomesLoggedUserFromFileXml(int idLoggedUser);
      
-     void addIncomeToFileXml(Item item);
+     void addIncomeToFileXml(Income income);
      
 };
 #endif
-	
-	
-	
-	
-	
-	
-};

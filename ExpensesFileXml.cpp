@@ -51,7 +51,7 @@ void ExpensesFileXml::addExpenseToFileXml(Expense expense)
         expense = getDataExpense();
         if (expense.getUserId() == idLoggedUser)
         {
-            expense.push_back(expense);
+            expenses.push_back(expense);
         }
         xml.ResetMainPos();
         xml.FindElem("ItemId");

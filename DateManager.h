@@ -12,7 +12,7 @@
 
 #include "HelperMethods.h"
 
-class Date
+class DateManager
 {
 public:
 
@@ -34,6 +34,3 @@ char takeDateFromUser();
 };
 #endif
 
-
-
-};

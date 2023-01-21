@@ -4,10 +4,10 @@
 #include <algorithm>
 #include <iostream>
 #include <string>
-
 #include <windows.h>
+
 #include "Item.h"
-#include "UserManger.h"
+#include "UserManager.h"
 
 using namespace std;
 

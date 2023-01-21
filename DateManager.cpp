@@ -44,7 +44,7 @@ char DateManager::takeDateFromUser() {
             dateToCheck = checkingPositionDashesInDate(dateToCheck);
         } while (isDateCorrect(dateToCheck) != true);
 
-        return HelperMethods::convertStringForInt(removeDashFromDate(dateToCheck));
+        return HelperMethods::conversionStringToInt(removeDashFromDate(dateToCheck));
     }
     break;
 
@@ -124,7 +124,7 @@ string DateManager::removeDashFromDate(string dateToCheck)
 
 bool DateManager::checkIfDateHasDigits(string dateToCheck)
 {
-    for (int i = 0; i < dateToCheck.length(); i++)
+    for (unsigned int i = 0; i < dateToCheck.length(); i++)
     {
         if (dateToCheck[i] > 57)
         {
@@ -156,7 +156,7 @@ int DateManager::getMonthFromDate(string dateToCheck)
 int DateManager::getDayFromDate(string dateToCheck)
 {
     int day;
-    day = HelperMethods::convertStringForInt(dateToCheck.erase(0,6));
+    day = HelperMethods::conversionStringToInt(dateToCheck.erase(0,6));
     if (day > 31 )
         return 0;
     else
@@ -225,7 +225,7 @@ int DateManager::setStartDate(char choice)
     }
 }
 
-int Date::setEndDate(char choice)
+int DateManager::setEndDate(char choice)
 {
     string date = HelperMethods::conversionIntToString(getCurrentDateOfSystem());
     if( choice == '3')
@@ -252,7 +252,7 @@ int Date::setEndDate(char choice)
     }
 }
 
-string Date::getDate()
+string DateManager::getDate()
 {
     string date = "";
     do
@@ -268,7 +268,7 @@ string Date::getDate()
     return date;
 }
 
-string  Date::putDashesToDate(string date)
+string  DateManager::putDashesToDate(string date)
 {
     date = date.insert(4,"-");
     date = date.insert(7,"-");
@@ -276,7 +276,7 @@ string  Date::putDashesToDate(string date)
     return date;
 }
 
-string Date::getNameOfMonth(string dateToCheck)
+string DateManager::getNameOfMonth(string dateToCheck)
 {
     int monthFromDate = getMonthFromDate(dateToCheck);
     map<int,string> month;
@@ -296,7 +296,7 @@ string Date::getNameOfMonth(string dateToCheck)
     return month.find((int)monthFromDate) -> second;
 }
 
-bool Date::isDateCorrect(string dateToCheck)
+bool DateManager::isDateCorrect(string dateToCheck)
 {
     dateToCheck = removeDashFromDate(dateToCheck);
      if(checkIfDateHasDigits(dateToCheck))

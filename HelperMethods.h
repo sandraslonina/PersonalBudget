@@ -19,6 +19,7 @@ static char getCharacter();
 
 
 static string putDashesInDate(string dateWithoutDashes);
+static string removeDashFromDate(string dateToCheck);
 static string conversionFloatToString(float number);
 static string checkAmount(string floatNumber);
 

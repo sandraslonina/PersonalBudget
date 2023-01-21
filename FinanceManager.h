@@ -53,9 +53,5 @@ public:
     void addNewExpense();
 void seeBalance(char choice);
     
-    
-
-	
-	
-	
 };
+#endif

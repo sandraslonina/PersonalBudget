@@ -18,23 +18,21 @@ void FinanceManager::addNewIncome()
 Income FinanceManager::giveDetailsNewIncome()
 {
     Income income;
-    Date date;
+DateManager dateManager;
+
+   string category, amount; 
+    
     income.setItemId(incomesFileXml.getLastItemId()+1);
-
     incomesFileXml.setLastItemId(income.getItemId());
-
     income.setUserId(ID_LOGGED_USER);
-
     income.setDate(dateManager.takeDateFromUser());
-
-    string category;
+    
     cout << "Give a category: " ;
     category = HelperMethods::getTheLine();
     income.setCategory(category);
 
-    string amount;
     cout << "Give an amount: ";
-    amount = HelperMethods::getTheLine;
+    cin >> amount;
     amount = HelperMethods::checkAmount(amount);
     income.setAmount(atof(amount.c_str()));
 
@@ -59,27 +57,25 @@ void FinanceManager::addNewExpense()
 Expense FinanceManager::giveDetailsNewExpense()
 {
     Expense expense;
-    Date date;
+    DateManager dateManager;
+    
+    string category, amount; 
+    
     expense.setItemId(expensesFileXml.getLastItemId()+1);
-
     expensesFileXml.setLastItemId(expense.getItemId());
-
     expense.setUserId(ID_LOGGED_USER);
-
     expense.setDate(dateManager.takeDateFromUser());
 
-    string category;
     cout << "Give a category: " ;
     category = HelperMethods::getTheLine();
-    income.setCategory(category);
+    expense.setCategory(category);
 
-    string amount;
     cout << "Give an amount: ";
-    amount = HelperMethods::getTheLine;
+    cin >> amount;
     amount = HelperMethods::checkAmount(amount);
-    income.setAmount(atof(amount.c_str()));
+    expense.setAmount(atof(amount.c_str()));
 
-    return income;
+    return expense;
 }
 
 
@@ -90,12 +86,12 @@ void FinanceManager::seeBalance(char choice)
     
     system("cls");
     
-    Date date;
+    DateManager dateManager;
     
     sortIncomesAndExpenses();
     
-    startDate = date.setStartDate(choice);
-    endDate = date.setEndDate(choice);
+    startDate = dateManager.setStartDate(choice);
+    endDate = dateManager.setEndDate(choice);
     
     system("cls");
 
@@ -110,7 +106,7 @@ void FinanceManager::seeBalance(char choice)
     system("pause");
 }
 
-void  BalanceManager:: sortIncomesAndExpenses()
+void  FinanceManager:: sortIncomesAndExpenses()
 {
     sort(incomes.begin(), incomes.end());
     sort(expenses.begin(), expenses.end());
@@ -136,10 +132,10 @@ void FinanceManager::headerExpenses()
 }
 
 
-float BalanceManager::seeChoosenLinesFromIcomes(char choice, int startDate,int endDate)
+float FinanceManager::seeChoosenLinesFromIcomes(char choice, int startDate,int endDate)
 {
     float sumAmountIncomes = 0;
-    for (int i = 0;  i < incomes.size(); i++)
+    for (unsigned int i = 0;  i < incomes.size(); i++)
     {
         if((incomes[i].getDate() >= startDate) && (incomes[i].getDate() <= endDate))
         {
@@ -153,7 +149,7 @@ float BalanceManager::seeChoosenLinesFromIcomes(char choice, int startDate,int e
 float FinanceManager::seeChoosenLinesFromExpenses(char choice, int startDate,int endDate)
 {
     float sumAmountExpenses = 0;
-    for (int i = 0;  i < expenses.size(); i++)
+    for (unsigned int i = 0;  i < expenses.size(); i++)
     {
         if((expenses[i].getDate() >= startDate) && (expenses[i].getDate() <= endDate))
         {
@@ -166,30 +162,24 @@ float FinanceManager::seeChoosenLinesFromExpenses(char choice, int startDate,int
 
 float FinanceManager::listOfIncomes (int i, float sumAmountIncomes)
 {
-    Date date;
-    cout << " " << date.putDashesToDate(HelperMethods::conversionIntToString(incomes[i].getDate())) << "    " << incomes[i].getCategory();
+    DateManager dateManager;
+    cout << " " << dateManager.putDashesToDate(HelperMethods::conversionIntToString(incomes[i].getDate())) << "    " << incomes[i].getCategory();
     string category = incomes[i].getCategory();
-    for (int j = 0 ; j < 24 - category.length(); j++)
+    for (unsigned int j = 0 ; j < 24 - category.length(); j++)
         cout << " ";
     cout << incomes[i].getAmount()  << endl;
     sumAmountIncomes += incomes[i].getAmount();
     return sumAmountIncomes;
 }
 
-
 float FinanceManager::listOfExpenses(int i, float sumAmountExpenses)
 {
-    Date date;
+    DateManager dateManager;
     cout << " " << dateManager.putDashesToDate(HelperMethods::conversionIntToString(expenses[i].getDate())) << "    " << expenses[i].getCategory();
     string category = expenses[i].getCategory();
-    for (int j = 0 ; j < 24 - category.length(); j++)
+    for (unsigned int j = 0 ; j < 24 - category.length(); j++)
         cout << " ";
     cout << expenses[i].getAmount()  << endl;
     sumAmountExpenses += expenses[i].getAmount();
     return sumAmountExpenses;
 }
-
-
-
-
-

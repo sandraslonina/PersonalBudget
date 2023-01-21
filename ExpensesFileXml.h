@@ -18,28 +18,21 @@ class ExpensesFileXml : public FileXml
 {
 	CMarkup xml;
 	
-	Expense getDataIncome();
+	Expense getDataExpense();
 	
 	int lastItemId;
 	
 public:
-    IncomesFileXml(string nameIncomesFileXml) : FileXml(nameIncomesFileXml) 
+    ExpensesFileXml(string nameExpensesFileXml) : FileXml(nameExpensesFileXml) 
     {
     	lastItemId = 0;
     };
     int getLastItemId();
     void setLastItemId(int newLastItemId);
     
-     vector <Expense> loadExpensesLoggedUserFromFileXml();
+     vector <Expense> loadExpensesLoggedUserFromFileXml(int idLoggedUser);
      
-     void addIncomeToFileXml(Item item);
+     void addExpenseToFileXml(Expense expense);
      
 };
 #endif
-	
-	
-	
-	
-	
-	
-};
