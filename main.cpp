@@ -4,9 +4,8 @@
 
 using namespace std;
 
-int main()
-{
-PersonalBudget personalBudget("Users.xml");
+int main() {
+    PersonalBudget personalBudget("users.xml", "incomes.xml", "expenses.xml");
 
     char choice;
 
@@ -23,7 +22,7 @@ PersonalBudget personalBudget("Users.xml");
                 personalBudget.userSignIn();
                 break;
 
-            case '8':
+            case '3':
                 exit(0);
                 break;
 
@@ -37,33 +36,38 @@ PersonalBudget personalBudget("Users.xml");
             choice = personalBudget.selectOptionFromUserMenu();
 
             switch (choice) {
-            	
-			case '1':
-				personalBudget.addIncome();
-				break;
-				
-			case '2':
-			personalBudget.addExpense();
-			break;
-			
-			case '3':
-				personalBudget.balanceForCurrentMonth();
-				break;
-				
-			case 4:
-				personalBudget.balanceForLastMonth();
-				break;
-				
-			case 5:
-				personalBudget.balanceForSelectedPeriod();
-				break;
-				
+
+            case '1':
+                personalBudget.addNewIncome();
+                break;
+
+            case '2':
+                personalBudget.addNewExpense();
+                break;
+
+            case '3':
+                personalBudget.balanceForCurrentMonth(choice);
+                break;
+
+            case '4':
+                personalBudget.balanceForLastMonth(choice);
+                break;
+
+            case '5':
+                personalBudget.balanceForSelectedPeriod(choice);
+                break;
+
             case '6':
                 personalBudget.changePasswordOfLoggedUser();
                 break;
 
             case '7':
                 personalBudget.userSignOut();
+                break;
+
+            default:
+                cout << endl << "This option isn`t available in user menu." << endl << endl;
+                system("pause");
                 break;
             }
         }

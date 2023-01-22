@@ -14,32 +14,22 @@
 
 using namespace std;
 
-class ExpensesFileXml : public FileXml
-{
-	CMarkup xml;
-	
-	Expense getDataIncome();
-	
-	int lastItemId;
-	
+class ExpensesFileXml: public FileXml {
+    CMarkup xml;
+
+    int lastItemId;
+
+    Expense giveDataNewExpense();
+
 public:
-    IncomesFileXml(string nameIncomesFileXml) : FileXml(nameIncomesFileXml) 
-    {
-    	lastItemId = 0;
+    ExpensesFileXml(string nameExpensesFileXml): FileXml(nameExpensesFileXml) {
+        lastItemId = 0;
     };
     int getLastItemId();
     void setLastItemId(int newLastItemId);
-    
-     vector <Expense> loadExpensesLoggedUserFromFileXml();
-     
-     void addIncomeToFileXml(Item item);
-     
+
+    void addExpenseToFileXml(Expense expense);
+
+    vector <Expense> loadExpensesLoggedUserFromFileXml(int idLoggedUser);
 };
 #endif
-	
-	
-	
-	
-	
-	
-};

@@ -1,9 +1,9 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+#include <iostream>
 #include <algorithm>
 #include <string>
-#include <iostream>
 
 using namespace std;
 
@@ -16,7 +16,6 @@ class Item {
 
 public:
     Item (int itemId = 0, int userId = 0, int date = 0, string category = "",  float amount = 0) {
-        
         this -> itemId = itemId;
         this -> userId = userId;
         this -> date = date;
@@ -29,7 +28,6 @@ public:
     void setCategory(string newCategory);
     void setAmount(float newAmount);
 
-
     int getItemId();
     int getUserId();
     int getDate();
@@ -38,5 +36,4 @@ public:
 
     bool operator < (const Item& str) const;
 };
-
 #endif

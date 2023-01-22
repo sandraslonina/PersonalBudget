@@ -4,9 +4,9 @@ bool Item::operator < (const Item& str) const {
     return (this->date < str.date);
 }
 
-void Item::setNumberOfRecord(int newItemId) {
+void Item::setItemId(int newItemId) {
     if(newItemId >= 0)
-        itemId = newitemId;
+        itemId = newItemId;
 }
 
 void Item::setUserId(int newUserId) {

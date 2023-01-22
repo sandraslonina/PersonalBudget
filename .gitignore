@@ -1,4 +1,6 @@
 bim/
 obj/
 PersonalBudget.*
-Plan/
+users.xml
+incomes.xml
+expenses.xml

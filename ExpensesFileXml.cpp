@@ -1,23 +1,19 @@
 #include "ExpensesFileXml.h"
 
-int ExpensesFileXml::getLastItemId()
-{
+int ExpensesFileXml::getLastItemId() {
     return lastItemId;
 }
 
-void ExpensesFileXml::setLastItemId(int newLastItemId)
-{
+void ExpensesFileXml::setLastItemId(int newLastItemId) {
     lastItemId = newLastItemId;
 }
 
-void ExpensesFileXml::addExpenseToFileXml(Expense expense)
-{
+void ExpensesFileXml::addExpenseToFileXml(Expense expense) {
     bool fileExists = xml.Load(getNameFile());
 
-    if (!fileExists)
-    {
+    if (!fileExists) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
-        xml.AddElem("Expense");
+        xml.AddElem("Expenses");
     }
 
     xml.FindElem();
@@ -32,27 +28,28 @@ void ExpensesFileXml::addExpenseToFileXml(Expense expense)
     xml.Save(getNameFile());
 }
 
- vector <Expense> ExpensesFileXml::loadExpensesLoggedUserFromFileXml(int idLoggedUser)
- {
+vector <Expense> ExpensesFileXml::loadExpensesLoggedUserFromFileXml(int idLoggedUser) {
     Expense expense;
     vector <Expense> expenses;
 
     bool fileExists = xml.Load( getNameFile());
-    if (!fileExists)
-    {
+
+    if (!fileExists) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Expenses");
     }
+
     MCD_STR buffor;
     xml.FindElem();
     xml.IntoElem();
-    while ( xml.FindElem("Expense") )
-    {
-        expense = getDataExpense();
-        if (expense.getUserId() == idLoggedUser)
-        {
-            expense.push_back(expense);
+
+    while ( xml.FindElem("Expense") ) {
+        expense = giveDataNewExpense();
+
+        if (expense.getUserId() == idLoggedUser) {
+            expenses.push_back(expense);
         }
+
         xml.ResetMainPos();
         xml.FindElem("ItemId");
         buffor = xml.GetData();
@@ -64,12 +61,10 @@ void ExpensesFileXml::addExpenseToFileXml(Expense expense)
     xml.OutOfElem();
     xml.Save(getNameFile());
 
-
     return expenses;
- }
- 
- Expense ExpensesFileXml::getDataExpense()
-{
+}
+
+Expense ExpensesFileXml::giveDataNewExpense() {
     Expense expense;
     MCD_STR itemId, userId, date, category, amount;
 

@@ -2,33 +2,32 @@
 #define USER_H
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 class User {
-    int userId;
+    int id;
     string login;
     string password;
     string name;
     string surname;
-    
 
 public:
-    User (int userId = 0, string login = "", string password = "", string name = "", string surname = "") {
-        this -> userId = userId;
+    User (int id = 0, string login = "", string password = "", string name = "", string surname = "") {
+        this -> id = id;
         this -> login = login;
         this -> password = password;
         this -> name = name;
         this -> surname = surname;
     }
-    
-    void setUserId(int newUserId);    
+    void setId(int newId);
     void setLogin(string newLogin);
     void setPassword(string newPassword);
     void setName(string newName);
     void setSurname(string newSurname);
 
-    int getUserId();  
+    int getId();
     string getLogin();
     string getPassword();
     string getName();
