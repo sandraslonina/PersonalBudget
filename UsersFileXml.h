@@ -1,9 +1,12 @@
-#ifndef USERSFILEXML_H
-#define USERSFILEXML_H
+#ifndef FILEWITHUSERS_H
+#define FILEWITHUSERS_H
 
 #include <iostream>
-#include <vector>
 #include <fstream>
+#include <windows.h>
+#include <vector>
+#include <algorithm>
+#include <sstream>
 #include <cstdlib>
 
 #include "User.h"

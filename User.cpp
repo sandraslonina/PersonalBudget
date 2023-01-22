@@ -1,13 +1,12 @@
 #include "User.h"
 
-void User::setUserId(int newUserId) {
-    if (newUserId >= 0)
-        userId = newUserId;
+void User::setId(int newId) {
+    if(newId >= 0)
+        id = newId;
 }
 void User::setLogin(string newLogin) {
     login = newLogin;
 }
-
 void User::setPassword(string newPassword) {
     password = newPassword;
 }
@@ -20,8 +19,8 @@ void User::setSurname(string newSurname) {
     surname = newSurname;
 }
 
-int User::getUserId() {
-    return userId;
+int User::getId() {
+    return id;
 }
 string User::getLogin() {
     return login;
@@ -30,10 +29,10 @@ string User::getPassword() {
     return password;
 }
 
-string User::getName() {
-    return name;
-}
-
 string User::getSurname() {
     return surname;
+}
+
+string User::getName() {
+    return name;
 }

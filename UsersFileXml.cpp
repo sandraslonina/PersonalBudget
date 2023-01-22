@@ -26,11 +26,11 @@ vector <User> UsersFileXml::loadUsersFromFileXml() {
 
 User UsersFileXml::getDataUser() {
     User user;
-    MCD_STR userId, login, password, name, surname;
+    MCD_STR id, login, password, name, surname;
     xml.IntoElem();
-    xml.FindElem("UserId");
-    userId = xml.GetData();
-    user.setUserId(atoi(userId.c_str()));
+    xml.FindElem("Id");
+    id = xml.GetData();
+    user.setId(atoi(id.c_str()));
 
     xml.FindElem("Login");
     login = xml.GetData();
@@ -65,7 +65,7 @@ void UsersFileXml::addUserToFileXml(User user) {
     xml.IntoElem();
     xml.AddElem("User");
     xml.IntoElem();
-    xml.AddElem("UserId", HelperMethods::conversionIntToString(user.getUserId()));
+    xml.AddElem("Id", HelperMethods::conversionIntToString(user.getId()));
     xml.AddElem("Login", user.getLogin());
     xml.AddElem("Password", user.getPassword());
     xml.AddElem("Name", user.getName());
@@ -84,17 +84,16 @@ void UsersFileXml::saveAllUsersToFileXml(int idLoggedUser, string password) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Users");
     }
-
     xml.FindElem();
     xml.IntoElem();
 
     for (unsigned int i = 0; i < users.size(); i++) {
         xml.AddElem("User");
         xml.IntoElem();
-        xml.AddElem("UserId", HelperMethods::conversionIntToString(users[i].getUserId()));
+        xml.AddElem("Id", HelperMethods::conversionIntToString(users[i].getId()));
         xml.AddElem("Login", users[i].getLogin());
 
-        if (users[i].getUserId() == idLoggedUser ) {
+        if (users[i].getId() == idLoggedUser ) {
             xml.AddElem("Password", password);
 
         } else {
@@ -108,7 +107,6 @@ void UsersFileXml::saveAllUsersToFileXml(int idLoggedUser, string password) {
 
     xml.Save(getNameFile());
 }
-
 
 void UsersFileXml::deleteFileXml(string nameFileToDelete) {
     if (remove(nameFileToDelete.c_str()) == 0) {}

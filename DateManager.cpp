@@ -1,14 +1,12 @@
 #include "DateManager.h"
 
-int DateManager::getCurrentDateOfSystem() {
-    string year, month, day;
-
-    time_t t = time(0);
+int DateManager::getCurrentDateOfSystem()
+{
+    time_t t = time(0);   
     struct tm * now = localtime( & t );
-
-    year = HelperMethods::conversionIntToString(now->tm_year + 1900);
-    month = HelperMethods::conversionIntToString(now->tm_mon + 1);
-    day = HelperMethods::conversionIntToString(now->tm_mday);
+    string year = HelperMethods::conversionIntToString(now->tm_year + 1900);
+    string month = HelperMethods::conversionIntToString(now->tm_mon + 1);
+    string day = HelperMethods::conversionIntToString(now->tm_mday);
 
     if ( month.size() == 1)
         month = "0" + month;
@@ -19,68 +17,41 @@ int DateManager::getCurrentDateOfSystem() {
     return HelperMethods::conversionStringToInt(year + month + day);
 }
 
-char DateManager::takeDateFromUser() {
-
+int DateManager::takeDateFromUser()
+{
+    char sign;
     string dateToCheck;
 
-    char choice;
-    
-    cout << "    >>> DATE MENU <<<" << endl;
-    cout << "---------------------------" << endl;
+    cout << "Choose option dates: "<< endl;
     cout << "1. Take date from today  " << endl;
-    cout << "2. Take date from other day " << endl;
-    cout << "Your choice: ";
-    choice = HelperMethods::getCharacter();
-
-    switch (choice) {
-    case '1':
-        return getCurrentDateOfSystem();
-        break;
-
-    case '2': {
-        do {
-            cout << "Put date(yyyy-mm-dd): ";
+    cout << "2. Take date from other day (exp: 2019-08-01)  " << endl;
+    sign = HelperMethods::getCharacter();
+    if (sign == '1')
+    {
+       return getCurrentDateOfSystem();
+    }
+    else if  (sign == '2')
+    {
+        do
+        {
+            cout << "Put date(exp: 2019-08-01): ";
             dateToCheck = HelperMethods::getTheLine();
             dateToCheck = checkingPositionDashesInDate(dateToCheck);
-        } while (isDateCorrect(dateToCheck) != true);
-
+        }
+        while (isDateCorrect(dateToCheck) != true);
         return HelperMethods::conversionStringToInt(removeDashFromDate(dateToCheck));
     }
-    break;
-
-    default:
-        cout << endl << "This option isn`t available in date menu." << endl << endl;
-        system("pause");
-        break;
-
-    }
-    return choice;
 }
-        /*char sign;
-         string dateToCheck;
 
-         cout << "Choose option dates: "<< endl;
-         cout << "1. Take date from today  " << endl;
-         cout << "2. Take date from other day (exp: 2019-08-01)  " << endl;
-         sign = HelperMethods::putTheSign();
-         if (sign == '1')
-         {
-            return getTheDateFromSystem();
-         }
-         else if  (sign == '2')
-         {
-             do
-             {
-                 cout << "Put date(exp: 2019-08-01): ";
-                 dateToCheck = HelperMethods::loadTheLine();
-                 dateToCheck = checkingPositionDashesInDate(dateToCheck);
-             }
-             while (isDateCorrect(dateToCheck) != true);
-             return HelperMethods::convertStringForInt(removeDashFromDate(dateToCheck));
-         }
-        }*/
+string DateManager::removeDashFromDate(string dateToCheck)
+{
+    string dateWithoutDash;
+    dateWithoutDash = dateToCheck.erase(4,1);
+    dateWithoutDash = dateToCheck.erase(6,1);
 
-        
+    return dateWithoutDash;
+}
+
 string DateManager::checkingPositionDashesInDate(string dateToCheck)
 {
     int longOfDate = dateToCheck.length();
@@ -111,15 +82,6 @@ string DateManager::checkingPositionDashesInDate(string dateToCheck)
             return dateToCheck;
         }
     }
-}
-
-string DateManager::removeDashFromDate(string dateToCheck)
-{
-    string dateWithoutDash;
-    dateWithoutDash = dateToCheck.erase(4,1);
-    dateWithoutDash = dateToCheck.erase(6,1);
-
-    return dateWithoutDash;
 }
 
 bool DateManager::checkIfDateHasDigits(string dateToCheck)
@@ -219,7 +181,7 @@ int DateManager::setStartDate(char choice)
     }
     else if( choice == '5')
     {
-        cout << "Start date of balance(yyyy-mm-dd): " << endl;
+        cout << "Start date of balance(exp: 2019-08-01) " << endl;
         string date = getDate();
         return HelperMethods::conversionStringToInt(removeDashFromDate(date));
     }
@@ -246,7 +208,7 @@ int DateManager::setEndDate(char choice)
     }
      else if( choice == '5')
     {
-        cout <<  "Finish date of balance(yyyy-mm-dd): " << endl;
+        cout <<  "Finish date of balance(exp: 2019-08-01) " << endl;
         string date = getDate();
         return HelperMethods::conversionStringToInt(removeDashFromDate(date));
     }
@@ -301,7 +263,7 @@ bool DateManager::isDateCorrect(string dateToCheck)
     dateToCheck = removeDashFromDate(dateToCheck);
      if(checkIfDateHasDigits(dateToCheck))
     {
-        cout << "Please type date with correct format: yyyy-mm-dd,exp 2022-01-15"  << endl;
+        cout << "Please type date with correct format: yyyy-mm-dd,exp 2019-01-02"  << endl;
         return false;
     }
     else if (getMonthFromDate(dateToCheck) == 0 && getDayFromDate(dateToCheck) == 0)
@@ -320,7 +282,7 @@ bool DateManager::isDateCorrect(string dateToCheck)
         cout << "Day is not between 1 and 31, please put correct day"  << endl;
         return false;
     }
-    else if (returnNumberDaysfromDate(dateToCheck) < getDayFromDate(dateToCheck))
+    else if (returnNumberDaysfromDate(dateToCheck)< getDayFromDate(dateToCheck))
     {
         cout << getNameOfMonth(dateToCheck) <<" doesn't have, so many days "<< endl;
         return false;
@@ -333,5 +295,3 @@ bool DateManager::isDateCorrect(string dateToCheck)
     else
         return true;
 }
-
-

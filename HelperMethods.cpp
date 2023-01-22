@@ -1,4 +1,4 @@
-#include "HelperMethods.h" 
+#include "HelperMethods.h"
 
 string HelperMethods::conversionIntToString(int figure)
 {
@@ -8,37 +8,49 @@ string HelperMethods::conversionIntToString(int figure)
     return str;
 }
 
-int HelperMethods::conversionStringToInt(string number) {
+int HelperMethods::conversionStringToInt(string number)
+{
     int numberInt;
     istringstream iss(number);
     iss >> numberInt;
+
     return numberInt;
 }
 
+string HelperMethods::conversionFloatToString(float number)
+{
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}
 
-string HelperMethods::getTheLine() {
+
+
+string HelperMethods::getTheLine()
+{
     string input = "";
-    cin.sync();
-    getline (cin, input);
+	cin.sync();
+    getline(cin, input);
     return input;
 }
 
-char HelperMethods::getCharacter() {
+char HelperMethods::getCharacter()
+{
     string input = "";
     char character  = {0};
 
-    while (true) {
+    while (true)
+    {
         cin.sync();
         getline(cin, input);
 
-        if (input.length() == 1) {
+        if (input.length() == 1)
+        {
             character = input[0];
             break;
         }
-
-        cout << "This isn`t a single character. Enter again." << endl;
     }
-
     return character;
 }
 
@@ -59,14 +71,6 @@ string HelperMethods::putDashesInDate(string dateWithoutDashes)
     return dateWithoutDashes;
 }
 
-string HelperMethods::conversionFloatToString(float number)
-{
-    ostringstream ss;
-    ss << number;
-    string str = ss.str();
-    return str;
-}
-
 
 string HelperMethods::checkAmount(string floatNumber)
 {
@@ -79,4 +83,3 @@ string HelperMethods::checkAmount(string floatNumber)
     }
     return floatNumber;
 }
-

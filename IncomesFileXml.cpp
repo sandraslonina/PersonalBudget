@@ -67,8 +67,8 @@ void IncomesFileXml::addIncomeToFileXml(Income income)
 
     return incomes;
  }
- 
- Income IncomesFileXml::getDataIncome()
+
+Income IncomesFileXml::getDataIncome()
 {
     Income income;
     MCD_STR itemId, userId, date, category, amount;

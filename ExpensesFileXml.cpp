@@ -17,7 +17,7 @@ void ExpensesFileXml::addExpenseToFileXml(Expense expense)
     if (!fileExists)
     {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
-        xml.AddElem("Expense");
+        xml.AddElem("Expenses");
     }
 
     xml.FindElem();
@@ -32,8 +32,8 @@ void ExpensesFileXml::addExpenseToFileXml(Expense expense)
     xml.Save(getNameFile());
 }
 
- vector <Expense> ExpensesFileXml::loadExpensesLoggedUserFromFileXml(int idLoggedUser)
- {
+vector <Expense> ExpensesFileXml::loadExpensesLoggedUserFromFileXml(int idLoggedUser)
+{
     Expense expense;
     vector <Expense> expenses;
 
@@ -64,11 +64,10 @@ void ExpensesFileXml::addExpenseToFileXml(Expense expense)
     xml.OutOfElem();
     xml.Save(getNameFile());
 
-
     return expenses;
- }
- 
- Expense ExpensesFileXml::getDataExpense()
+}
+
+Expense ExpensesFileXml::getDataExpense()
 {
     Expense expense;
     MCD_STR itemId, userId, date, category, amount;
