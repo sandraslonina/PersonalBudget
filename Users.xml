@@ -35,4 +35,11 @@
 <Name>ania</Name>
 <Surname>jaros</Surname>
 </User>
+<User>
+<Id>3</Id>
+<Login>baba</Login>
+<Password>123</Password>
+<Name>barte</Name>
+<Surname>nedza</Surname>
+</User>
 </Users>
