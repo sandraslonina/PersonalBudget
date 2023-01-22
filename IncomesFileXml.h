@@ -18,7 +18,7 @@ class IncomesFileXml: public FileXml
 {
     CMarkup xml;
     
-    Income getDataIncome();
+    Income giveDataNewIncome();
     
     int lastItemId;
 

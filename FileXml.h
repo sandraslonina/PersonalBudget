@@ -6,14 +6,12 @@
 
 using namespace std;
 
-class FileXml
-{
+class FileXml {
     const string NAME_FILE_XML;
 
 public:
     FileXml(string nameFileXml) : NAME_FILE_XML(nameFileXml) {}
 
     string getNameFile();
-    bool isFileEmpty();
 };
 #endif

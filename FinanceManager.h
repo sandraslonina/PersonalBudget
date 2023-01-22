@@ -10,7 +10,6 @@
 #include <windows.h>
 #include <cstdlib>
 
-
 #include "Income.h"
 #include "IncomesFileXml.h"
 #include "ExpensesFileXml.h"
@@ -18,32 +17,30 @@
 
 using namespace std;
 
-class FinanceManager
-{
+class FinanceManager {
     const int ID_LOGGED_USER;
     vector <Income> incomes;
     vector <Expense> expenses;
 
-     IncomesFileXml incomesFileXml;
+    IncomesFileXml incomesFileXml;
     ExpensesFileXml expensesFileXml;
 
     Income giveDetailsNewIncome();
-	Expense giveDetailsNewExpense();
+    Expense giveDetailsNewExpense();
 
     void headerIncomes();
     void headerExpenses();
+    float writeOutExpenses(int i, float sumAmountExpenses);
+    float writeOutIncomes(int i, float sumAmountIncomes);
     float seeChoosenLinesFromIcomes(char choice, int dateFrom,int dateTill);
     float seeChoosenLinesFromExpenses(char choice, int dateFrom,int dateTill);
     void sortIncomesAndExpenses();
-    float writeOutExpenses(int i, float sumAmountExpenses);
-    float writeOutIncomes(int i, float sumAmountIncomes);
-
+    
 public:
     FinanceManager(string nameIncomesFileXml,string nameExpensesFileXml, int idLoggedUser)
-    : ID_LOGGED_USER(idLoggedUser), incomesFileXml(nameIncomesFileXml), expensesFileXml(nameExpensesFileXml)
-    {
-		incomes = incomesFileXml.loadIncomesLoggedUserFromFileXml(ID_LOGGED_USER);
-		expenses = expensesFileXml.loadExpensesLoggedUserFromFileXml(ID_LOGGED_USER);
+        : ID_LOGGED_USER(idLoggedUser), incomesFileXml(nameIncomesFileXml), expensesFileXml(nameExpensesFileXml) {
+        incomes = incomesFileXml.loadIncomesLoggedUserFromFileXml(ID_LOGGED_USER);
+        expenses = expensesFileXml.loadExpensesLoggedUserFromFileXml(ID_LOGGED_USER);
     };
 
     void addNewIncome();

@@ -12,25 +12,26 @@
 
 #include "HelperMethods.h"
 
+class DateManager {
+    int getCurrentDateOfSystem();
+    string checkingPositionDashesInDate(string dateToCheck);
+    bool checkIfDateHasDigits(string dateToCheck);
 
-class DateManager
-{
+    int getYearFromDate(string dateToCheck);
+    int getMonthFromDate(string dateToCheck);
+    int getDayFromDate(string dateToCheck);
 
-  public:
-      int getCurrentDateOfSystem();
-      int takeDateFromUser();
-      string checkingPositionDashesInDate(string dateToCheck);
-      bool isDateCorrect(string dateToCheck);
-      string removeDashFromDate(string dateToCheck);
-      bool checkIfDateHasDigits(string dateToCheck);
-      int getYearFromDate(string dateToCheck);
-      int getMonthFromDate(string dateToCheck);
-      int getDayFromDate(string dateToCheck);
-      int returnNumberDaysfromDate(string dateToCheck);
-      string getNameOfMonth(string dateToCheck);
-      int setStartDate(char choice);
-      int setEndDate(char choice);
-      string getDate();
-      string putDashesToDate(string date);
+    int returnNumberDaysFromDate(string dateToCheck);
+    string removeDashFromDate(string dateToCheck);
+    string getDate();
+    string getNameOfMonth(string dateToCheck);
+    bool isDateCorrect(string dateToCheck);
+
+public:
+    int takeDateFromUser();
+    int setStartDate(char choice);
+    int setEndDate(char choice);
+
+    string putDashesToDate(string date);
 };
 #endif

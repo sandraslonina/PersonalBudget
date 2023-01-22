@@ -1,21 +1,17 @@
 #include "IncomesFileXml.h"
 
-int IncomesFileXml::getLastItemId()
-{
+int IncomesFileXml::getLastItemId() {
     return lastItemId;
 }
 
-void IncomesFileXml::setLastItemId(int newLastItemId)
-{
+void IncomesFileXml::setLastItemId(int newLastItemId) {
     lastItemId = newLastItemId;
 }
 
-void IncomesFileXml::addIncomeToFileXml(Income income)
-{
+void IncomesFileXml::addIncomeToFileXml(Income income) {
     bool fileExists = xml.Load(getNameFile());
 
-    if (!fileExists)
-    {
+    if (!fileExists) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Incomes");
     }
@@ -32,27 +28,28 @@ void IncomesFileXml::addIncomeToFileXml(Income income)
     xml.Save(getNameFile());
 }
 
- vector <Income> IncomesFileXml::loadIncomesLoggedUserFromFileXml(int idLoggedUser)
- {
+vector <Income> IncomesFileXml::loadIncomesLoggedUserFromFileXml(int idLoggedUser) {
     Income income;
     vector <Income> incomes;
 
-    bool fileExists = xml.Load( getNameFile());
-    if (!fileExists)
-    {
+    bool fileExists = xml.Load(getNameFile());
+
+    if (!fileExists) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Incomes");
     }
+
     MCD_STR buffor;
     xml.FindElem();
     xml.IntoElem();
-    while ( xml.FindElem("Income") )
-    {
-        income = getDataIncome();
-        if (income.getUserId() == idLoggedUser)
-        {
+
+    while ( xml.FindElem("Income") ) {
+        income = giveDataNewIncome();
+
+        if (income.getUserId() == idLoggedUser) {
             incomes.push_back(income);
         }
+
         xml.ResetMainPos();
         xml.FindElem("ItemId");
         buffor = xml.GetData();
@@ -64,12 +61,10 @@ void IncomesFileXml::addIncomeToFileXml(Income income)
     xml.OutOfElem();
     xml.Save(getNameFile());
 
-
     return incomes;
- }
+}
 
-Income IncomesFileXml::getDataIncome()
-{
+Income IncomesFileXml::giveDataNewIncome() {
     Income income;
     MCD_STR itemId, userId, date, category, amount;
 

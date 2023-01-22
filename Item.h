@@ -7,8 +7,7 @@
 
 using namespace std;
 
-class Item
-{
+class Item {
     int itemId;
     int userId;
     int date;
@@ -16,8 +15,7 @@ class Item
     float amount;
 
 public:
-    Item (int itemId = 0, int userId = 0, int date = 0, string category = "",  float amount = 0)
-    {
+    Item (int itemId = 0, int userId = 0, int date = 0, string category = "",  float amount = 0) {
         this -> itemId = itemId;
         this -> userId = userId;
         this -> date = date;
@@ -29,7 +27,6 @@ public:
     void setDate(int newDate);
     void setCategory(string newCategory);
     void setAmount(float newAmount);
-
 
     int getItemId();
     int getUserId();

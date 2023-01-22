@@ -38,6 +38,5 @@ public:
     void userSignOut();
     bool userIsLoggedIn();
 
-    bool loginExists();
 };
 #endif
