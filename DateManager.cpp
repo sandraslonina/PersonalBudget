@@ -219,7 +219,7 @@ string DateManager::getDate() {
 
     do {
         do {
-            cout << "Put date: ";
+            cout << "Enter date: ";
             date = HelperMethods::getTheLine();
         } while (date == "");
 
