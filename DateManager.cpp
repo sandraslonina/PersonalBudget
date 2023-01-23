@@ -159,13 +159,22 @@ int DateManager::setStartDate(char choice) {
         return HelperMethods::conversionStringToInt(date);
 
     } else if( choice == '4') {
-        string stringMonth = HelperMethods::conversionIntToString(getMonthFromDate(date)-1);
 
-        if ( stringMonth.size() == 1)
-            stringMonth = "0" + stringMonth;
+        if (getMonthFromDate(date) == 1) {
+            date = HelperMethods::conversionIntToString(getYearFromDate(date)-1) + "12" + "01";
+            return HelperMethods::conversionStringToInt(date);
+        }
 
-        date = HelperMethods::conversionIntToString(getYearFromDate(date)) + stringMonth + "01";
-        return HelperMethods::conversionStringToInt(date);
+        if ((getMonthFromDate(date) == 2 || 3 || 4 || 5 || 6 || 7 || 8 ||9 ||10 || 11 || 12 )) {
+            string stringMonth = HelperMethods::conversionIntToString(getMonthFromDate(date)-1);
+
+            if ( stringMonth.size() == 1)
+                stringMonth = "0" + stringMonth;
+
+            date = HelperMethods::conversionIntToString(getYearFromDate(date)) + stringMonth + "01";
+            return HelperMethods::conversionStringToInt(date);
+
+        }
 
     } else if( choice == '5') {
         cout << "Start date of balance(YYYY-MM-DD) " << endl;
@@ -189,16 +198,25 @@ int DateManager::setEndDate(char choice) {
         return HelperMethods::conversionStringToInt(date);
 
     } else if( choice == '4') {
-        string stringMonth = HelperMethods::conversionIntToString(getMonthFromDate(date)-1);
 
-        if ( stringMonth.size() == 1)
-            stringMonth = "0" + stringMonth;
+        if (getMonthFromDate(date) == 1) {
+            date = HelperMethods::conversionIntToString(getYearFromDate(date)-1) + "12" + "31";
+            return HelperMethods::conversionStringToInt(date);
+        }
 
-        date = HelperMethods::conversionIntToString(getYearFromDate(date)) + stringMonth + HelperMethods::conversionIntToString(returnNumberDaysFromDate(date));
-        return HelperMethods::conversionStringToInt(date);
+        if (getMonthFromDate(date) == 2 || 3 || 4 || 5 || 6 || 7 || 8 || 9 || 10 || 11 || 12 ) {
+            string stringMonth = HelperMethods::conversionIntToString(getMonthFromDate(date)-1);
+
+            if ( stringMonth.size() == 1)
+                stringMonth = "0" + stringMonth;
+
+            date = HelperMethods::conversionIntToString(getYearFromDate(date)) + stringMonth + HelperMethods::conversionIntToString(returnNumberDaysFromDate(date));
+            return HelperMethods::conversionStringToInt(date);
+        }
 
     } else if( choice == '5') {
         cout <<  "Finish date of balance(YYYY-MM-DD) " << endl;
+
         string date = getDate();
         return HelperMethods::conversionStringToInt(removeDashFromDate(date));
     }
