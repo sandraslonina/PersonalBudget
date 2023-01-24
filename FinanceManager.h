@@ -9,6 +9,7 @@
 #include <map>
 #include <windows.h>
 #include <cstdlib>
+#include <iomanip> 
 
 #include "Income.h"
 #include "IncomesFileXml.h"
@@ -21,9 +22,10 @@ class FinanceManager {
     const int ID_LOGGED_USER;
     vector <Income> incomes;
     vector <Expense> expenses;
-
+    
     IncomesFileXml incomesFileXml;
     ExpensesFileXml expensesFileXml;
+    DateManager dateManager;
 
     Income giveDetailsNewIncome();
     Expense giveDetailsNewExpense();

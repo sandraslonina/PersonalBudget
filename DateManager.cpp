@@ -275,6 +275,9 @@ string DateManager::getNameOfMonth(string dateToCheck) {
 
 bool DateManager::isDateCorrect(string dateToCheck) {
     dateToCheck = removeDashFromDate(dateToCheck);
+    
+    string date = HelperMethods::conversionIntToString(getCurrentDateOfSystem());
+    
 
     if(checkIfDateHasDigits(dateToCheck)) {
         cout << "Please type date with correct format: YYYY-MM-DD"  << endl;
@@ -300,7 +303,11 @@ bool DateManager::isDateCorrect(string dateToCheck) {
     } else if (getYearFromDate(dateToCheck) == 0) {
         cout << "Put year more than 2000 "  << endl;
         return false;
+        
+	} else if ((getYearFromDate(dateToCheck) >  getYearFromDate(date)) || (getYearFromDate(dateToCheck) ==  getYearFromDate(date)) &&  (getMonthFromDate(dateToCheck) > getMonthFromDate(date))) {
+        cout << "Date must be in the current year and current month "  << endl;
+        return false;
 
-    } else
+    }
         return true;
 }

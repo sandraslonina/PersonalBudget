@@ -29,10 +29,11 @@ void FinanceManager::addNewExpense() {
 }
 
 Income FinanceManager::giveDetailsNewIncome() {
-    string category, amount;
+    string category;
+    float amount;
     
     Income income;
-    DateManager dateManager;
+    //DateManager dateManager;
     
     income.setItemId(incomesFileXml.getLastItemId()+1);
     incomesFileXml.setLastItemId(income.getItemId());
@@ -45,19 +46,19 @@ Income FinanceManager::giveDetailsNewIncome() {
     category = HelperMethods::getTheLine();
     income.setCategory(category);
 
-    cout << "Give an amount: ";
-    cin >> amount;
-    amount = HelperMethods::checkAmount(amount);
-    income.setAmount(atof(amount.c_str()));
+    cout << "Give an amount(e.g. 10.50): ";
+    amount = HelperMethods::getFloat();
+    income.setAmount(amount);
 
     return income;
 }
 
 Expense FinanceManager::giveDetailsNewExpense() {
-	string category, amount;
+	string category; 
+	float amount;
 	
     Expense expense;
-    DateManager dateManager;
+    //DateManager dateManager;
 
     expense.setItemId(expensesFileXml.getLastItemId()+1);
     expensesFileXml.setLastItemId(expense.getItemId());
@@ -70,10 +71,9 @@ Expense FinanceManager::giveDetailsNewExpense() {
     category = HelperMethods::getTheLine();
     expense.setCategory(category);
 
-    cout << "Give an amount: ";
-    cin >> amount;
-    amount = HelperMethods::checkAmount(amount);
-    expense.setAmount(atof(amount.c_str()));
+    cout << "Give an amount(e.g. 10.50): ";
+    amount = HelperMethods::getFloat();
+    expense.setAmount(amount);
 
     return expense;
 }
@@ -91,34 +91,34 @@ void FinanceManager::headerExpenses() {
     cout << "---------------------------------------------------" << endl;
 }
 
-float FinanceManager::writeOutExpenses(int i, float sumAmountExpenses) {
-    DateManager dateManager;
-    cout << " " << dateManager.putDashesToDate(HelperMethods::conversionIntToString(expenses[i].getDate())) << "    " << expenses[i].getCategory();
-    string category = expenses[i].getCategory();
-
-    for (unsigned int j = 0 ; j < 24 - category.length(); j++)
-        cout << " ";
-
-    cout << expenses[i].getAmount()  << endl;
-    sumAmountExpenses += expenses[i].getAmount();
-    return sumAmountExpenses;
-}
-
 float FinanceManager::writeOutIncomes(int i, float sumAmountIncomes) {
-    DateManager dateManager;
+    //DateManager dateManager;
     cout << " " << dateManager.putDashesToDate(HelperMethods::conversionIntToString(incomes[i].getDate())) << "    " << incomes[i].getCategory();
     string category = incomes[i].getCategory();
 
     for (unsigned int j = 0 ; j < 24 - category.length(); j++)
         cout << " ";
 
-    cout << incomes[i].getAmount()  << endl;
+    cout << fixed << setprecision(2) << incomes[i].getAmount()  << endl;
     sumAmountIncomes+= incomes[i].getAmount();
     return sumAmountIncomes;
 }
 
+float FinanceManager::writeOutExpenses(int i, float sumAmountExpenses) {
+    //DateManager dateManager;
+    cout << " " << dateManager.putDashesToDate(HelperMethods::conversionIntToString(expenses[i].getDate())) << "    " << expenses[i].getCategory();
+    string category = expenses[i].getCategory();
+
+    for (unsigned int j = 0 ; j < 24 - category.length(); j++)
+        cout << " ";
+
+    cout << fixed << setprecision(2) << expenses[i].getAmount()  << endl;
+    sumAmountExpenses += expenses[i].getAmount();
+    return sumAmountExpenses;
+}
+
 float FinanceManager::seeChoosenLinesFromIcomes(char choice, int dateFrom,int dateTill ) {
-    float sumAmountIncomes = 0;
+    float sumAmountIncomes = 0.00;
 
     for (unsigned int i = 0;  i < incomes.size(); i++) {
         if((incomes[i].getDate() >= dateFrom ) && (incomes[i].getDate() <= dateTill) ) {
@@ -126,12 +126,12 @@ float FinanceManager::seeChoosenLinesFromIcomes(char choice, int dateFrom,int da
         }
     }
 
-    cout << endl << "               SUM INCOMES: " << sumAmountIncomes << " PLN" << endl << endl;
+    cout << endl << "               SUM INCOMES: " << fixed << setprecision(2) << sumAmountIncomes << " PLN" << endl << endl;
     return sumAmountIncomes;
 }
 
 float FinanceManager::seeChoosenLinesFromExpenses(char choice, int dateFrom,int dateTill ) {
-    float sumAmountExpenses = 0;
+    float sumAmountExpenses = 0.00;
 
     for (unsigned int i = 0;  i < expenses.size(); i++) {
         if((expenses[i].getDate() >= dateFrom ) && (expenses[i].getDate() <= dateTill) ) {
@@ -139,7 +139,7 @@ float FinanceManager::seeChoosenLinesFromExpenses(char choice, int dateFrom,int 
         }
     }
 
-    cout << endl << "               SUM EXPENSES: " << sumAmountExpenses << " PLN" << endl << endl;
+    cout << endl << "               SUM EXPENSES: " << fixed << setprecision(2) << sumAmountExpenses << " PLN" << endl << endl;
     return sumAmountExpenses;
 }
 
@@ -148,7 +148,7 @@ void FinanceManager::seeBalance(char choice) {
     float sumIncomes, sumExpenses;
     
     system("cls");
-    DateManager dateManager;
+    //DateManager dateManager;
     
     sortIncomesAndExpenses();
     

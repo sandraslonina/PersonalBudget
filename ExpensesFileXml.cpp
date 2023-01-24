@@ -88,7 +88,6 @@ Expense ExpensesFileXml::giveDataNewExpense() {
 
     xml.FindElem("Amount");
     amount = xml.GetData();
-    amount = HelperMethods::checkAmount(amount);
     expense.setAmount(atof(amount.c_str()));
 
     return expense;

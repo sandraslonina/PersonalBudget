@@ -5,6 +5,7 @@
 #include <sstream>
 #include <algorithm>
 #include <fstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ public:
     static string conversionFloatToString(float number);
     static string getTheLine();
     static char getCharacter();
+    static float getFloat();
     static string putDashesInDate(string dateWithoutDashes);
     static string removeDashFromDate(string dateToCheck);
     static string checkAmount(string floatNumber);
