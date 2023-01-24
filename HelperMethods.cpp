@@ -46,6 +46,25 @@ char HelperMethods::getCharacter() {
     return character;
 }
 
+float HelperMethods::getFloat()
+{
+    string input = "";
+    float number;
+
+    while (true)
+    {
+         cin.sync();
+        getline(cin, input);
+
+        stringstream myStream(input);
+        if (myStream >> number)
+            break;
+        cout << "This isn`t the amount. Please add amount again. " << endl;
+    }
+    return number;
+}
+
+
 string HelperMethods::removeDashFromDate(string dateToCheck) {
     string dateWithoutDash;
     dateWithoutDash = dateToCheck.erase(4,1);
@@ -67,6 +86,5 @@ string HelperMethods::checkAmount(string floatNumber) {
             floatNumber[i] = 46;
         }
     }
-
     return floatNumber;
 }

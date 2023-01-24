@@ -88,7 +88,6 @@ Income IncomesFileXml::giveDataNewIncome() {
 
     xml.FindElem("Amount");
     amount = xml.GetData();
-    amount = HelperMethods::checkAmount(amount);
     income.setAmount(atof(amount.c_str()));
 
     return income;
