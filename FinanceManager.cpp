@@ -31,10 +31,9 @@ void FinanceManager::addNewExpense() {
 Income FinanceManager::giveDetailsNewIncome() {
     string category;
     float amount;
-    
+
     Income income;
-    //DateManager dateManager;
-    
+
     income.setItemId(incomesFileXml.getLastItemId()+1);
     incomesFileXml.setLastItemId(income.getItemId());
 
@@ -46,7 +45,7 @@ Income FinanceManager::giveDetailsNewIncome() {
     category = HelperMethods::getTheLine();
     income.setCategory(category);
 
-    cout << "Give an amount(e.g. 10.50): ";
+    cout << "Give an amount (e.g. 10.50): ";
     amount = HelperMethods::getFloat();
     income.setAmount(amount);
 
@@ -54,11 +53,10 @@ Income FinanceManager::giveDetailsNewIncome() {
 }
 
 Expense FinanceManager::giveDetailsNewExpense() {
-	string category; 
-	float amount;
-	
+    string category;
+    float amount;
+
     Expense expense;
-    //DateManager dateManager;
 
     expense.setItemId(expensesFileXml.getLastItemId()+1);
     expensesFileXml.setLastItemId(expense.getItemId());
@@ -71,7 +69,7 @@ Expense FinanceManager::giveDetailsNewExpense() {
     category = HelperMethods::getTheLine();
     expense.setCategory(category);
 
-    cout << "Give an amount(e.g. 10.50): ";
+    cout << "Give an amount (e.g. 10.50): ";
     amount = HelperMethods::getFloat();
     expense.setAmount(amount);
 
@@ -146,12 +144,11 @@ float FinanceManager::seeChoosenLinesFromExpenses(char choice, int dateFrom,int 
 void FinanceManager::seeBalance(char choice) {
     int dateFrom, dateTill;
     float sumIncomes, sumExpenses;
-    
+
     system("cls");
-    //DateManager dateManager;
-    
+
     sortIncomesAndExpenses();
-    
+
     dateFrom = dateManager.setStartDate(choice);
     dateTill = dateManager.setEndDate(choice);
     system("cls");
