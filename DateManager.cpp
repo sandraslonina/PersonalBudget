@@ -275,25 +275,25 @@ string DateManager::getNameOfMonth(string dateToCheck) {
 
 bool DateManager::isDateCorrect(string dateToCheck) {
     dateToCheck = removeDashFromDate(dateToCheck);
-    
+
     string date = HelperMethods::conversionIntToString(getCurrentDateOfSystem());
-    
+
 
     if(checkIfDateHasDigits(dateToCheck)) {
         cout << "Please type date with correct format: YYYY-MM-DD"  << endl;
         return false;
 
     } else if (getMonthFromDate(dateToCheck) == 0 && getDayFromDate(dateToCheck) == 0) {
-        cout << "Month must be between 1 and 12. Please enter correct month"  << endl;
-        cout << "Day must be between 1 and 31. Please enter correct month"  << endl;
+        cout << "Month must be between 1 and 12! Please enter correct month"  << endl;
+        cout << "Day must be between 1 and 31! Please enter correct month"  << endl;
         return false;
 
     } else if (getMonthFromDate(dateToCheck) == 0 && getDayFromDate(dateToCheck) != 0) {
-        cout << "Month must be between 1 and 12. Please enter correct month"  << endl;
+        cout << "Month must be between 1 and 12! Please enter correct month"  << endl;
         return false;
 
     } else if (getMonthFromDate(dateToCheck) != 0 && getDayFromDate(dateToCheck) == 0) {
-        cout << "Day must be between 1 and 31. Please enter correct month"  << endl;
+        cout << "Day must be between 1 and 31! Please enter correct month"  << endl;
         return false;
 
     } else if (returnNumberDaysFromDate(dateToCheck) < getDayFromDate(dateToCheck)) {
@@ -303,11 +303,12 @@ bool DateManager::isDateCorrect(string dateToCheck) {
     } else if (getYearFromDate(dateToCheck) == 0) {
         cout << "Put year more than 2000 "  << endl;
         return false;
-        
-	} else if ((getYearFromDate(dateToCheck) >  getYearFromDate(date)) || (getYearFromDate(dateToCheck) ==  getYearFromDate(date)) &&  (getMonthFromDate(dateToCheck) > getMonthFromDate(date))) {
-        cout << "Date must be in the current year and current month "  << endl;
+
+    } else if ((getYearFromDate(dateToCheck) >  getYearFromDate(date)) || ((getYearFromDate(dateToCheck) ==  getYearFromDate(date)) &&  (getMonthFromDate(dateToCheck) > getMonthFromDate(date)))) {
+        cout << "Date must be in the current year and current month! "  << endl;
         return false;
 
     }
-        return true;
+
+    return true;
 }
